@@ -5,7 +5,7 @@ try {
   const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
   let html = await new Response(stream).text();
-  html = html.replace('</head>', '<link rel="stylesheet" href="./theme.css"></head>');
+  html = html.replace('</head>', '<link rel="stylesheet" href="./theme.css?v=dark-2"></head>');
   document.open(); document.write(html); document.close();
 } catch (e) {
   document.getElementById('loading').textContent = 'Could not load dashboard: ' + e.message;
