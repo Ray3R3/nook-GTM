@@ -4,7 +4,8 @@ try {
   const b64 = (await Promise.all(names.map(async n => (await (await fetch('./data/'+n)).text()).trim()))).join('');
   const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-  const html = await new Response(stream).text();
+  let html = await new Response(stream).text();
+  html = html.replace('</head>', '<link rel="stylesheet" href="./theme.css"></head>');
   document.open(); document.write(html); document.close();
 } catch (e) {
   document.getElementById('loading').textContent = 'Could not load dashboard: ' + e.message;
