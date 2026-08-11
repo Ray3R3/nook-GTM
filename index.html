@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Superhero Hotel Performance</title></head><body><p id="loading" style="font-family:system-ui;padding:24px">Loading dashboard…</p><script type="module">
 try {
-  const names = ['part-1.txt','part-2.txt','part-3.txt','part-4.txt','part-5.txt','part-6.txt'];
+  const names = ['part-1.txt','part-2.txt','part-3.txt','a07.txt','a08.txt','a09.txt','a10.txt','a11.txt','a12.txt'];
   const b64 = (await Promise.all(names.map(async n => (await (await fetch('./data/'+n)).text()).trim()))).join('');
   const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
